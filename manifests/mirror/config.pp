@@ -9,8 +9,7 @@
 #
 class kafka::mirror::config(
   $consumer_config = $kafka::mirror::consumer_config,
-  $producer_config = $kafka::mirror::producer_config,
-  $service_restart = $kafka::mirror::service_restart
+  $producer_config = $kafka::mirror::producer_config
 ) {
 
   if $caller_module_name != $module_name {
@@ -18,8 +17,7 @@ class kafka::mirror::config(
   }
 
   class { 'kafka::producer::config':
-    config          => $producer_config,
-    service_restart => $service_restart
+    config => $producer_config
   }
 
   create_resources('kafka::consumer::config', $consumer_config)

@@ -61,11 +61,6 @@ class kafka (
     $install_directory = $install_dir
   }
 
-  if $install_java {
-    class {'java':
-      distribution => 'jdk'
-    }
-  }
 
   ensure_resource('package','wget', {'ensure' => 'present'})
 
